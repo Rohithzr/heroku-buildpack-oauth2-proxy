@@ -31,6 +31,15 @@ else
 fi
 export OAUTH2_PROXY_EMAIL_DOMAINS
 
+if [ -n "${OAUTH2_GITHUB_ORG}" ]; then
+    OAUTH2_PROXY_GITHUB_ORG="${OAUTH2_GITHUB_ORG}"
+    export OAUTH2_PROXY_GITHUB_ORG
+fi
+
 echo "starting oauth2_proxy..."
 
-exec ./oauth2_proxy -redirect-url ${OIDC_REDIRECT_URL} -oidc-issuer-url ${OIDC_ISSUER_URL}
+if [ -n "${OIDC_ISSUER_URL}" ]; then
+    exec ./oauth2_proxy -redirect-url ${OIDC_REDIRECT_URL} -oidc-issuer-url ${OIDC_ISSUER_URL}
+else
+    exec ./oauth2_proxy
+fi
