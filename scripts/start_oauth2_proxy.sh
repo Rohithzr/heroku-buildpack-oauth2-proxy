@@ -35,4 +35,4 @@ if [ -n "${OAUTH2_GITHUB_ORG}" ]; then
 fi
 
 echo "starting oauth2_proxy..."
-exec ./oauth2_proxy
+exec ./oauth2_proxy -redirect-url ${OIDC_REDIRECT_URL} -oidc-issuer-url ${OIDC_ISSUER_URL}
