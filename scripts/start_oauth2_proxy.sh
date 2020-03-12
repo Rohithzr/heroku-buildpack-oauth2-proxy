@@ -32,8 +32,5 @@ fi
 export OAUTH2_PROXY_EMAIL_DOMAINS
 
 echo "starting oauth2_proxy..."
-echo "debug..."
-echo $OIDC_REDIRECT_URL
-echo $OIDC_ISSUER_URL
 
 exec ./oauth2_proxy -redirect-url ${OIDC_REDIRECT_URL} -oidc-issuer-url ${OIDC_ISSUER_URL}
