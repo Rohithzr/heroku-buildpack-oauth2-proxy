@@ -1,4 +1,4 @@
-# heroku-buildpack-oauth2-proxy
+# heroku-buildpack-oauth2-proxy (with OIDC support)
 
 This buildpack adds authentication against an OAuth2 provider such as
 GitHub or Google to your Heroku application.
@@ -24,7 +24,7 @@ you might also skip ahead to the [usage section](#usage-with-other-applications)
 First, clone the example branch and switch into it:
 
 ```console
-git clone https://github.com/cfra/heroku-buildpack-oauth2-proxy -b example-static oauth2-example
+git clone https://github.com/rohithzr/heroku-buildpack-oauth2-proxy -b example-static oauth2-example
 cd oauth2-example
 ```
 
@@ -33,7 +33,7 @@ Then, create a new Heroku application and set the buildpacks:
 ```console
 heroku create
 heroku buildpacks:set https://github.com/heroku/heroku-buildpack-static.git
-heroku buildpacks:add cfra/oauth2-proxy
+heroku buildpacks:add https://github.com/rohithzr/heroku-buildpack-oauth2-proxy#oidc_support
 ```
 
 You need an account for the proxy so that it can interface with your OAuth2 provider.
@@ -50,13 +50,18 @@ which you need to configure on the Heroku app:
 ```console
 heroku config:set OAUTH2_PROXY_CLIENT_ID=0123456789abcdef1234
 heroku config:set OAUTH2_PROXY_CLIENT_SECRET=0123456789abcdef0123456789abcdef01234567
+heroku config:set OIDC_ISSUER_URL=https://your-issuer
+heroku config:set OIDC_REDIRECT_URL=https://your-protected-page
+heroku config:set PORT=4180
 ```
+
+Please note, we are specifying a PORT above as 4180, if your application depends on this variable, you must change it.
 
 Furthermore, you need to specify that GitHub should be used as authentication provider
 and provide a secret key for encrypting the session cookies:
 
 ```console
-heroku config:set OAUTH2_PROXY_PROVIDER=github
+heroku config:set OAUTH2_PROXY_PROVIDER=[github/oidc]
 heroku config:set OAUTH2_PROXY_COOKIE_SECRET=$(python -c \
     'from secrets import token_urlsafe; print(token_urlsafe(32)[:32])' \
 )
@@ -131,7 +136,7 @@ Optionally, you can provide the following:
 ## Contributing
 
 Should you encounter any issues while using this buildpack or discover any bugs, I would be glad if
-you [file an issue](https://github.com/cfra/heroku-buildpack-oauth2-proxy/issues) with this GitHub project.
+you [file an issue](https://github.com/rohithzr/heroku-buildpack-oauth2-proxy/issues) with this GitHub project.
 
 Also, the current configuration options are quite limited and specific to GitHub. If you need
 support for configuration of other authentication providers, feel free to open a pull request
