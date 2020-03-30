@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-#set -o pipefail
+set -o pipefail
 
 # This pipe setup is not my invention but the same one used by
 # https://github.com/heroku/heroku-buildpack-static
