@@ -8,7 +8,7 @@ if [ -z ${PORT+x} ]; then echo "please set PORT"; exit 1; fi
 if [ -z ${OAUTH2_PROXY_PROVIDER+x} ]; then echo "please set OAUTH2_PROXY_PROVIDER"; exit 1; fi
 if [ -z ${OAUTH2_PROXY_CLIENT_ID+x} ]; then echo "please set OAUTH2_PROXY_CLIENT_ID"; exit 1; fi
 if [ -z ${OAUTH2_PROXY_CLIENT_SECRET+x} ]; then echo "please set OAUTH2_PROXY_CLIENT_SECRET"; exit 1; fi
-if [ -z ${OAUTH2_PROXY_COOKIE_SECRET+x} ]; then echo "please set OAUTH2_PROXY_COOKIE_SECRET"; exit 1; fi
+#if [ -z ${OAUTH2_PROXY_COOKIE_SECRET+x} ]; then echo "please set OAUTH2_PROXY_COOKIE_SECRET"; exit 1; fi
 if [ -z ${OIDC_REDIRECT_URL+x} ]; then echo "please set OIDC_REDIRECT_URL"; exit 1; fi
 if [ -z ${OIDC_ISSUER_URL+x} ]; then echo "please set OIDC_ISSUER_URL"; exit 1; fi
 
