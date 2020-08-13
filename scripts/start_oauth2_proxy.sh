@@ -39,7 +39,7 @@ fi
 echo "starting oauth2_proxy..."
 
 if [ -n "${OIDC_ISSUER_URL}" ]; then
-    exec ./oauth2_proxy -redirect-url ${OIDC_REDIRECT_URL} -oidc-issuer-url ${OIDC_ISSUER_URL} --skip-provider-button=true
+    exec ./oauth2_proxy -redirect-url ${OIDC_REDIRECT_URL} -oidc-issuer-url ${OIDC_ISSUER_URL} --skip-provider-button=true --cookie-secure=false
 else
     exec ./oauth2_proxy
 fi
