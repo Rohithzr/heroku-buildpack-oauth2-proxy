@@ -44,5 +44,6 @@ if [ -n "${OIDC_ISSUER_URL}" ]; then
     exec ./oauth2_proxy -redirect-url ${OIDC_REDIRECT_URL} -oidc-issuer-url ${OIDC_ISSUER_URL} --skip-provider-button=true --cookie-secure=false --http-address="0.0.0.0:$PORT" --pass_host_header=false
     echo "running..."
 else
-    exec ./oauth2_proxy
+    echo "starting..."
+    exec ./oauth2_proxy --pass_host_header=false --skip-provider-button=true --cookie-secure=false
 fi
