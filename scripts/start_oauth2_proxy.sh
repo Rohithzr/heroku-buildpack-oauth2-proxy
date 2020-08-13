@@ -41,7 +41,7 @@ echo "starting oauth2_proxy..."
 
 if [ -n "${OIDC_ISSUER_URL}" ]; then
     echo "starting..."
-    exec ./oauth2_proxy -redirect-url ${OIDC_REDIRECT_URL} -oidc-issuer-url ${OIDC_ISSUER_URL} --skip-provider-button=true --cookie-secure=false --http-address="0.0.0.0:$PORT" --upstream="$OIDC_REDIRECT_URL" --pass_host_header=false
+    exec ./oauth2_proxy -redirect-url ${OIDC_REDIRECT_URL} -oidc-issuer-url ${OIDC_ISSUER_URL} --skip-provider-button=true --cookie-secure=false --http-address="0.0.0.0:$PORT" --pass_host_header=false
     echo "running..."
 else
     exec ./oauth2_proxy
